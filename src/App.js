@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Game1QuestionImageComponent from './components/Game1QuestionImageComponent'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <Game1QuestionImageComponent/>
     </div>
   );
 }

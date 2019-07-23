@@ -1,18 +1,22 @@
 import React, { Component } from 'react'
 import request from 'superagent'
-// import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
 class Question extends Component {
   state = {
-    success: false,
     selection: [],
     allAvailableDog: [],
-    value: [],
     userAnswer: null
   }
   
   componentDidMount() {
     this.getAllDogsList()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.answer !== this.props.answer) {
+      this.generateQuestionChoices()
+    }
   }
 
   getAllDogsList = () => {
@@ -47,18 +51,16 @@ class Question extends Component {
     options.push(this.props.answer)
     options = options.sort(() => 0.5 - Math.random())
     this.setState({ selection : options })
-    console.log(this.state.selection)
-
   }
-    // todo: add the answer to selection state 
-    // shuffle the selection state
 
-  handleSubmit = (event) => {
+  handleSubmitForm = (event) => {
     event.preventDefault()
-    this.setState({success: this.state.userAnswer === this.props.answer ? true: false })
-      console.log(this.state.success)
-      // const checkAnswer = this.state.userAnswer === this.props.answer ? true : false
-      // console.log(checkAnswer)
+    const isCorrect = this.state.userAnswer === this.props.answer ? true: false
+    this.props.dispatch({
+      type: 'SET_GAME1_RESULTS',
+      payload: isCorrect
+    })
+    this.props.handleSubmit(isCorrect)
   } 
 
   handleButtonChange(event) {
@@ -67,20 +69,21 @@ class Question extends Component {
 
   render() {
     const radioButtons = this.state.selection.map(option => <div 
-      key={option}
-      onChange={event => this.handleButtonChange(event)}>
-    <input 
-      type="radio"
-      name="dog"
-      value={option}
-      />
-    <label>{option}</label>
-    </div> 
+        key={option}
+        onChange={event => this.handleButtonChange(event)}>
+      <input 
+        type="radio"
+        name="dog"
+        value={option}
+        />
+      <label>{option}</label>
+      </div>
     )
+    console.log(this.props.game1Results)
     return (
       <div> 
         <p>Which Dog Breed is this belong to?</p>
-        <form ref="form" onSubmit={this.handleSubmit}>
+        <form ref="form" onSubmit={this.handleSubmitForm}>
         {radioButtons}
           <button type="submit">Submit</button>
         </form>
@@ -89,4 +92,10 @@ class Question extends Component {
   } 
 }
 
-export default Question
+const mapStateToProps = (state) => {
+  return {
+    game1Results: state
+  }
+}
+
+export default connect(mapStateToProps)(Question)

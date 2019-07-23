@@ -10,7 +10,6 @@ class DogslistContainer extends React.Component {
         request
             .get('https://dog.ceo/api/breeds/list/all')
             .then(response => {
-                console.log(response.body.message)
                 this.props.setDogs((Object.keys(response.body.message)))
             })
             .catch(console.error)

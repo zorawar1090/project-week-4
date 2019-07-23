@@ -24,19 +24,22 @@ export default class Game1Container extends React.Component {
           answer: response.body.message.split('/')[4],
           loading: false
         })
-        console.log(response.body.message)
       })
       .catch(error => {
         console.error(error)
       })
   } 
 
+  onSubmitQuestion = (value) => {
+    this.getRandomDog()
+  }
+   
   render() {
     if (this.state.loading) return <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />
     return (
       <div>
-        <Link to={`/dog-breeds`}>List all the dog breeds</Link>
-        <Question answer={this.state.answer}/>
+        <Link to={`/`}>List all the dog breeds</Link>
+        <Question answer={this.state.answer} handleSubmit={this.onSubmitQuestion}/>
         <Game1QuestionImageComponent imageUrl={this.state.imageUrl}/>
       </div>
     )

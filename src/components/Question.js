@@ -79,7 +79,6 @@ class Question extends Component {
       <label>{option}</label>
       </div>
     )
-    console.log(this.props.game1Results)
     return (
       <div> 
         <p>Which Dog Breed is this belong to?</p>

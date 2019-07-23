@@ -93,7 +93,7 @@ class Question extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    game1Results: state
+    game1Results: state.gameOne
   }
 }
 

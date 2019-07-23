@@ -2,7 +2,6 @@ import React from 'react'
 import DogsList from './DogsList'
 import request from 'superagent'
 import {connect} from 'react-redux'
-import {setDogs} from '../actions/dogs'
 
 class DogslistContainer extends React.Component {
 
@@ -10,7 +9,10 @@ class DogslistContainer extends React.Component {
         request
             .get('https://dog.ceo/api/breeds/list/all')
             .then(response => {
-                this.props.setDogs((Object.keys(response.body.message)))
+                this.props.dispatch({
+                    type: 'SET_DOGS',
+                    payload: Object.keys(response.body.message)
+                })
             })
             .catch(console.error)
     }
@@ -19,12 +21,12 @@ class DogslistContainer extends React.Component {
         return <DogsList dogBreeds={this.props.dogBreeds} />
     }
 }
-const mapDispatchToprops = { setDogs }
+// const mapDispatchToprops = { setDogs }
 
 const mapStateToProps = (state) => {
     return {
-        dogBreeds: state
+        dogBreeds: state.reducer
     }
 }
 
-export default connect (mapStateToProps, mapDispatchToprops)(DogslistContainer)
+export default connect (mapStateToProps)(DogslistContainer)

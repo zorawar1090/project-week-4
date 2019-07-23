@@ -2,9 +2,9 @@ import React from 'react';
 import './App.css';
 import { Provider } from 'react-redux'
 import store from './store'
-import DogListContainer from './components/DogsListContainer'
 import DogBreedImagesContainer from './components/DogBreedImagesContainer'
 import {Route} from 'react-router-dom'
+import HomeContainer from './components/HomeContainer';
 import Game1Container from './components/Game1Container'
 import Game2Container from './components/Game2Container'
 import Game3Container from './components/Game3Container'
@@ -13,13 +13,12 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        <Game2Container/>
-        <Route exact path="/" component={Game1Container} />
-        <Route exact path="/dog-breeds" component={DogListContainer} />
         <Route path="/dog-breeds/:breed" component={DogBreedImagesContainer} />
+        <Route path="/game/1" component={Game1Container} />
+        <Route path="/game/2" component={Game2Container} />
+        <Route path="/game/3" component={Game3Container} />
       </div>
     </Provider>
-
   );
 }
 

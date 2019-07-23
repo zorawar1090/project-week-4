@@ -16,12 +16,6 @@ class DogslistContainer extends React.Component {
             .catch(console.error)
     }
 
-    // updateBreeds(breeds){
-    //     this.setState({
-    //         dogBreeds: breeds
-    //     })
-    // }
-
     render(){
         return <DogsList dogBreeds={this.props.dogBreeds} />
     }

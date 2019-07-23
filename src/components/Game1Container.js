@@ -37,7 +37,7 @@ export default class Game1Container extends React.Component {
       <div>
         <Link to={`/dog-breeds`}>List all the dog breeds</Link>
         <Question answer={this.state.answer}/>
-        <Game1QuestionImageComponent/>
+        <Game1QuestionImageComponent imageUrl={this.state.imageUrl}/>
       </div>
     )
   }

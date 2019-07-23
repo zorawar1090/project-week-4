@@ -6,7 +6,9 @@ class Question extends Component {
   state = {
     success: false,
     selection: [],
-    allAvailableDog: []
+    allAvailableDog: [],
+    value: [],
+    userAnswer: null
   }
   
   componentDidMount() {
@@ -46,26 +48,40 @@ class Question extends Component {
     options = options.sort(() => 0.5 - Math.random())
     this.setState({ selection : options })
     console.log(this.state.selection)
-  }
 
-// todo: get 2 item from all available dog not equal to prop.answer
-    // todo: put the 2 item to selection state
+  }
     // todo: add the answer to selection state 
     // shuffle the selection state
 
-  handleSubmit(event) {
-    event.preventDefault();
+  handleSubmit = (event) => {
+    event.preventDefault()
+    this.setState({success: this.state.userAnswer === this.props.answer ? true: false })
+      console.log(this.state.success)
+      // const checkAnswer = this.state.userAnswer === this.props.answer ? true : false
+      // console.log(checkAnswer)
   } 
-  
+
+  handleButtonChange(event) {
+    this.setState({userAnswer: event.target.value})
+  }
+
   render() {
-    const radioButtons = this.state.selection.map(option => <div><input type="radio"name="dog" value={option}/>
-    <label>{option}</label></div> 
+    const radioButtons = this.state.selection.map(option => <div 
+      key={option}
+      onChange={event => this.handleButtonChange(event)}>
+    <input 
+      type="radio"
+      name="dog"
+      value={option}
+      />
+    <label>{option}</label>
+    </div> 
     )
     return (
       <div> 
         <p>Which Dog Breed is this belong to?</p>
         <form ref="form" onSubmit={this.handleSubmit}>
-        { radioButtons }
+        {radioButtons}
           <button type="submit">Submit</button>
         </form>
       </div>

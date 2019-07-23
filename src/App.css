@@ -45,3 +45,7 @@
   max-width: 250px;
   padding: 10px;
 }
+
+.spinner {
+  margin: auto;
+}

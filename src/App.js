@@ -13,7 +13,6 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        <Route exact path="/" component={HomeContainer} />
         <Route path="/dog-breeds/:breed" component={DogBreedImagesContainer} />
         <Route path="/game/1" component={Game1Container} />
         <Route path="/game/2" component={Game2Container} />

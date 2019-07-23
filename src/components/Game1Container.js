@@ -1,14 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react'
+import {Link} from 'react-router-dom'
+import Game1QuestionImageComponent from './Game1QuestionImageComponent'
 import Question from './Question'
 
-class Game1Container extends Component {
-  render() {
-    return (
+export default class Game1Container extends React.Component{
+  render(){
+    return(
       <div>
+        <Link to={`/dog-breeds`}>List all the dog breeds</Link>
         <Question/>
+        <Game1QuestionImageComponent/>
       </div>
     )
   }
 }
-
-export default Game1Container

@@ -20,7 +20,6 @@ function App() {
         <Route path="/game/3" component={Game3Container} />
       </div>
     </Provider>
-
   );
 }
 

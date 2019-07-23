@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
+import {Link} from 'react-router-dom'
+import Game1QuestionImageComponent from './Game1QuestionImageComponent'
 import Question from './Question'
 import request from 'superagent'
 import Spinner from 'react-spinner-material';
 
-class Game1Container extends Component {
+export default class Game1Container extends React.Component {
   state = {
     imageUrl: null,
     answer: null,
@@ -33,11 +35,10 @@ class Game1Container extends Component {
     if (this.state.loading) return <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />
     return (
       <div>
-        {/* image here */}
+        <Link to={`/dog-breeds`}>List all the dog breeds</Link>
         <Question answer={this.state.answer}/>
+        <Game1QuestionImageComponent/>
       </div>
     )
   }
 }
-
-export default Game1Container

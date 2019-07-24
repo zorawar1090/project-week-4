@@ -7,7 +7,8 @@ class Question extends Component {
   state = {
     selection: [],
     allAvailableDog: [],
-    userAnswer: null
+    userAnswer: null,
+    hasAnswer: null
   }
   
   componentDidMount() {
@@ -51,23 +52,37 @@ class Question extends Component {
     let options = shuffledDog.slice(0, 2);
     options.push(this.props.answer)
     options = options.sort(() => 0.5 - Math.random())
-    this.setState({ selection : options })
+    this.setState({ 
+      selection : options,
+      hasAnswer : null,
+      userAnswer : null
+    })
   }
 
   handleSubmitForm = (event) => {
+    console.log(this.state.hasAnswer)
     event.preventDefault()
-    const isCorrect = this.state.userAnswer === this.props.answer ? true: false
-    this.props.dispatch({
-      type: 'SET_GAME1_RESULTS',
-      payload: isCorrect
-    })
-    this.props.handleSubmit(isCorrect)
+    if (this.state.hasAnswer === true) {
+      const isCorrect = this.state.userAnswer === this.props.answer ? true : false
+      this.props.dispatch({
+        type: 'SET_GAME1_RESULTS',
+        payload: isCorrect
+      })
+      this.props.handleSubmit(isCorrect)
+    } else {
+      this.setState({ 
+        hasAnswer : false,
+      })
+    }
   } 
 
   handleButtonChange(event) {
-    this.setState({userAnswer: event.target.value})
+    this.setState({
+      hasAnswer: true,
+      userAnswer: event.target.value,
+    })
   }
-
+  
   render() {
     const radioButtons = this.state.selection.map(option => <div 
         key={option}
@@ -80,13 +95,19 @@ class Question extends Component {
       <label>{option}</label>
       </div>
     )
+    let formValidation = null
+    if (this.state.hasAnswer === false) {
+      formValidation = <p className="error">Please select an answer.</p>
+    }
+    console.log(this.state.hasAnswer)
     return (
-      <div> 
+      <div>
         <p>Which Dog Breed is this belong to?</p>
         <form ref="form" onSubmit={this.handleSubmitForm}>
         {radioButtons}
-          <Button variant="outline-secondary" className="btn-secondary">Submit</Button>
+        <Button className="btn-secondary" type="submit">Submit </Button>
         </form>
+        { formValidation }
       </div>
     )
   } 

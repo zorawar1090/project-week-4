@@ -1,7 +1,6 @@
 import React,{Component}  from 'react'
 import request from 'superagent'
 import './Game2CardItem.css'
-import {incrementCorrect,incrementIncorrect} from '../actions/game-2'
 
 
 export default class Game2CardItem extends Component{

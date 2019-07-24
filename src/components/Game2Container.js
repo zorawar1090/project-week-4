@@ -7,6 +7,7 @@ import {incrementCorrect, incrementIncorrect} from '../actions/game-2'
  class Game2Container extends Component{
  render(){
      console.log('CORRECT:',this.props.correctAnswers )
+     console.log('INCORRECT:',this.props.incorrectAnswers )
      return <Game2CardItem 
      correctAnswers={this.props.correctAnswers} 
      incorrectAnswers={this.props.incorrectAnswers}
@@ -16,8 +17,8 @@ import {incrementCorrect, incrementIncorrect} from '../actions/game-2'
  }
 }
 const mapStateToProps = state => ({
-    correctAnswers: state.correctAnswers,
-    incorrectAnswers: state.incorrectAnswers,
+    correctAnswers: state.game2.correctAnswers,
+    incorrectAnswers: state.game2.incorrectAnswers,
   });
   
   const mapDispatchToProps = dispatch => bindActionCreators({ incrementCorrect, incrementIncorrect }, dispatch);

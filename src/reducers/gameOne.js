@@ -1,9 +1,7 @@
-import {SET_DOGS} from '../actions/dogs'
-
 export default (state = [], action = {}) => {
   switch (action.type) {
-    case SET_DOGS:
-      return action.payload
+    case 'SET_GAME1_RESULTS':
+      return [...state, action.payload]
     default:
       return state
   }

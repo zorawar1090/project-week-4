@@ -20,3 +20,7 @@
 .spinner {
   margin: auto;
 }
+
+.error {
+  color: red;
+}

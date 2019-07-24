@@ -15,13 +15,7 @@ export function incrementIncorrect() {
     }
   }
 
-export function totalAnswers(){
-    return{
-        type: TOTAL
-    }
-}
-
-export function success(){
+export function successR(){
     return{
         type: SUCCESS
     }

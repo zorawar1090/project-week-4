@@ -60,7 +60,6 @@ class Question extends Component {
   }
 
   handleSubmitForm = (event) => {
-    console.log(this.state.hasAnswer)
     event.preventDefault()
     if (this.state.hasAnswer === true) {
       const isCorrect = this.state.userAnswer === this.props.answer ? true : false
@@ -87,19 +86,19 @@ class Question extends Component {
     const radioButtons = this.state.selection.map(option => <div 
         key={option}
         onChange={event => this.handleButtonChange(event)}>
-      <input 
-        type="radio"
-        name="dog"
-        value={option}
+        <input 
+          type="radio"
+          name="dog"
+          value={option}
         />
-      <label>{option}</label>
+        &nbsp;&nbsp;
+        <label>{option}</label>
       </div>
     )
     let formValidation = null
     if (this.state.hasAnswer === false) {
       formValidation = <p className="error">Please select an answer.</p>
     }
-    console.log(this.state.hasAnswer)
     return (
       <div>
         <p>Which Dog Breed is this belong to?</p>

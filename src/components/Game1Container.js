@@ -54,7 +54,7 @@ export default class Game1Container extends React.Component {
     if (this.state.loading) return <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />
     return (
       <div>
-        <Link to={`/`}>List all the dog breeds</Link>
+        <Link to={`/`}>Home</Link>
         <Question answer={this.state.answer} handleSubmit={this.onSubmitQuestion}/>
         <Game1QuestionImageComponent imageUrl={this.state.imageUrl}/>
         <p className="error">{ this.state.isCorrect ? '' : `Wrong! The correct answer is ${this.state.answer}`}</p>

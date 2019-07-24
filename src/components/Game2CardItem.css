@@ -10,6 +10,7 @@ p {
     display: inline-block;
     border: 2px solid black;
     padding: 10px 20px;
+    margin-right: 20px;
 }
 
 .correct{

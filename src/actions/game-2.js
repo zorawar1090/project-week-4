@@ -15,7 +15,7 @@ export function incrementIncorrect() {
     }
   }
 
-export function successR(){
+export function updateSuccess(){
     return{
         type: SUCCESS
     }

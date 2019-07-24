@@ -37,6 +37,7 @@ export default class Game2CardItem extends Component{
                 this.setState({ feedback: false });
                 this.getData();
                 this.props.incrementCorrect();
+                this.props.updateSuccess();
             }, 1000);
         }
         else{
@@ -45,6 +46,7 @@ export default class Game2CardItem extends Component{
                 this.setState({ feedback: false });
                 this.getData();
                 this.props.incrementIncorrect();
+                this.props.updateSuccess();
             }, 2000);
         }
     }

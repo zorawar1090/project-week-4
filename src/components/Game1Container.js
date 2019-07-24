@@ -1,11 +1,11 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import Game1QuestionImageComponent from './Game1QuestionImageComponent'
-import Question from './Question'
+import Question from './Game1Question'
 import request from 'superagent'
 import Spinner from 'react-spinner-material';
 
-export default class Game1Container extends React.Component {
+class Game1Container extends React.Component {
   state = {
     imageUrl: null,
     answer: null,
@@ -16,6 +16,9 @@ export default class Game1Container extends React.Component {
   }
 
   getRandomDog = () => {
+    this.setState({
+      isCorrect: true
+    })
     request
       .get(`https://dog.ceo/api/breeds/image/random`)
       .then(response => {
@@ -24,21 +27,37 @@ export default class Game1Container extends React.Component {
           answer: response.body.message.split('/')[4],
           loading: false
         })
-        console.log(response.body.message)
       })
       .catch(error => {
         console.error(error)
       })
   } 
 
+  onSubmitQuestion = (result) => {
+    this.props.userHasAnswered(true)
+    this.setState({
+      isCorrect: result
+    })
+    if (result === false) {
+      setTimeout(() => {
+        this.getRandomDog()
+      }, 2000);
+    } else {
+      this.getRandomDog()
+    }
+  }
+
   render() {
     if (this.state.loading) return <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />
     return (
       <div>
-        <Link to={`/dog-breeds`}>List all the dog breeds</Link>
-        <Question answer={this.state.answer}/>
-        <Game1QuestionImageComponent/>
+        <Link to={`/`}>Home</Link>
+        <Question answer={this.state.answer} handleSubmit={this.onSubmitQuestion}/>
+        <Game1QuestionImageComponent imageUrl={this.state.imageUrl}/>
+        <p className="error">{ this.state.isCorrect ? '' : `Wrong! The correct answer is ${this.state.answer}`}</p>
       </div>
     )
   }
 }
+
+export default Game1Container

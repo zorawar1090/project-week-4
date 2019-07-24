@@ -32,7 +32,7 @@ export default class Game2CardItem extends Component{
         //console.log('current:', this.state.correctIndex)
         if (parseInt(index) === this.state.correctIndex){
             this.setState({ feedback: true })
-
+            this.props.userHasAnswered(true)    
             setTimeout(() => {
                 this.setState({ feedback: false });
                 this.getData();

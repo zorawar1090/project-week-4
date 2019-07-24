@@ -1,6 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Abel&display=swap');
+
 .App {
+  padding: 30px;
   text-align: center;
-  background-color: bisque
+  background-color: bisque;
+  font-family: 'Abel', sans-serif;
+  text-transform: capitalize;
+  font-size: 1.3em;
+  border: 20px solid #a0603c75;
 }
 
 .dogs-list ul {
@@ -12,6 +19,10 @@
   column-gap: 20px;
   list-style-type: none;
 }
+.dog-list:link {
+  text-decoration: none;
+  color: white;
+}
 .dog-breed-images img {
   max-width: 250px;
   padding: 10px;
@@ -19,4 +30,22 @@
 
 .spinner {
   margin: auto;
+}
+
+.error {
+  color: red;
+}
+
+.btn-secondary {
+  margin-bottom: 10px;
+  background-color: #d2a887 !important;
+  color: white !important;
+  border-color: #e0a97e !important;
+}
+
+.play-button:hover  {
+  /* color: ; */
+  background-color: #d2a887 !important;
+  color: white !important;
+  border-color: #e0a97e !important;
 }

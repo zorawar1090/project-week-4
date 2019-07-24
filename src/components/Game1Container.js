@@ -5,7 +5,7 @@ import Question from './Game1Question'
 import request from 'superagent'
 import Spinner from 'react-spinner-material';
 
-export default class Game1Container extends React.Component {
+class Game1Container extends React.Component {
   state = {
     imageUrl: null,
     answer: null,
@@ -53,8 +53,8 @@ export default class Game1Container extends React.Component {
   render() {
     if (this.state.loading) return <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />
     return (
-      <div>
-        <Link to={`/`}>Home</Link>
+      <div className="game-container">
+        <Link to={`/`} className="link">Home</Link>
         <Question answer={this.state.answer} handleSubmit={this.onSubmitQuestion}/>
         <Game1QuestionImageComponent imageUrl={this.state.imageUrl}/>
         <p className="error">{ this.state.isCorrect ? '' : `Wrong! The correct answer is ${this.state.answer}`}</p>
@@ -62,3 +62,5 @@ export default class Game1Container extends React.Component {
     )
   }
 }
+
+export default Game1Container

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import request from 'superagent'
 import { connect } from 'react-redux'
+import { Button } from 'react-bootstrap';
 
 class Question extends Component {
   state = {
@@ -84,7 +85,7 @@ class Question extends Component {
         <p>Which Dog Breed is this belong to?</p>
         <form ref="form" onSubmit={this.handleSubmitForm}>
         {radioButtons}
-          <button type="submit">Submit</button>
+          <Button variant="outline-secondary" className="btn-secondary">Submit</Button>
         </form>
       </div>
     )

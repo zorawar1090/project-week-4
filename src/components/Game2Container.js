@@ -2,7 +2,7 @@ import React,{Component} from 'react'
 import Game2CardItem from './Game2CardItem'
 import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux'
-import {incrementCorrect, incrementIncorrect,} from '../actions/game-2'
+import {incrementCorrect, incrementIncorrect, success} from '../actions/game-2'
 
  class Game2Container extends Component{
 
@@ -15,9 +15,8 @@ import {incrementCorrect, incrementIncorrect,} from '../actions/game-2'
      incrementCorrect={this.props.incrementCorrect}
      incrementIncorrect={this.props.incrementIncorrect}
      totalAnswers={this.props.totalAnswers}
-     success={this.props.success}
+     success={this.props.success}/>
      
-     />
      <p>Correct: {this.props.correctAnswers} / {this.props.totalAnswers}</p>
      <p>Success Rate: {this.props.success}%</p>
      </div>
@@ -30,7 +29,7 @@ const mapStateToProps = state => ({
     success: state.game2.success
   });
   
-  const mapDispatchToProps = dispatch => bindActionCreators({ incrementCorrect, incrementIncorrect }, dispatch);
+  const mapDispatchToProps = dispatch => bindActionCreators({ incrementCorrect, incrementIncorrect, success }, dispatch);
   
   export default connect(
     mapStateToProps,

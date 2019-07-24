@@ -34,7 +34,9 @@ class Game1Container extends React.Component {
   } 
 
   onSubmitQuestion = (result) => {
-    this.props.userHasAnswered(true)
+    if (this.props.fromGame3) {
+      this.props.userHasAnswered(true)
+    }
     this.setState({
       isCorrect: result
     })
@@ -51,10 +53,10 @@ class Game1Container extends React.Component {
     if (this.state.loading) return <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />
     return (
       <div>
-        <Link to={`/`}>Home</Link>
-        <Question answer={this.state.answer} handleSubmit={this.onSubmitQuestion}/>
+        <Link to={`/`}>Show me what you got!</Link>
         <Game1QuestionImageComponent imageUrl={this.state.imageUrl}/>
-        <p className="error">{ this.state.isCorrect ? '' : `Wrong! The correct answer is ${this.state.answer}`}</p>
+        <Question answer={this.state.answer} handleSubmit={this.onSubmitQuestion}/>
+        <h6 className="error">{ this.state.isCorrect ? '' : `Wrong! The correct answer is ${this.state.answer}`}</h6>
       </div>
     )
   }

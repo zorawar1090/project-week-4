@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import request from 'superagent'
 import { connect } from 'react-redux'
 import { Button } from 'react-bootstrap';
+import '../style/Game1Question.css' 
 
 class Question extends Component {
   state = {
@@ -97,11 +98,11 @@ class Question extends Component {
     )
     let formValidation = null
     if (this.state.hasAnswer === false) {
-      formValidation = <p className="error">Please select an answer.</p>
+      formValidation = <h6 className="error">Please select an answer.</h6>
     }
     return (
       <div>
-        <p>Which Dog Breed is this belong to?</p>
+        <h2>What is the breed of this dog?</h2>
         <form ref="form" onSubmit={this.handleSubmitForm}>
         {radioButtons}
         <Button className="btn-secondary" type="submit">Submit </Button>

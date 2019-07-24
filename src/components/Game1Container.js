@@ -34,17 +34,14 @@ class Game1Container extends React.Component {
   } 
 
   onSubmitQuestion = (result) => {
+    this.props.userHasAnswered(true)
     this.setState({
       isCorrect: result
     })
     if (result === false) {
-      setTimeout(
-        function() {
-          this.getRandomDog()
-        }
-        .bind(this),
-        2000
-      )
+      setTimeout(() => {
+        this.getRandomDog()
+      }, 2000);
     } else {
       this.getRandomDog()
     }

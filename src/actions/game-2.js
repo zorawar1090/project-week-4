@@ -1,6 +1,7 @@
 export const INCREMENT_CORRECT = 'INCREMENT_CORRECT'
 export const INCREMENT_INCORRECT = 'INCREMENT_INCORRECT'
 export const TOTAL ='TOTAL'
+export const SUCCESS ='SUCCESS'
 
 export function incrementCorrect() {
   return {
@@ -17,5 +18,11 @@ export function incrementIncorrect() {
 export function totalAnswers(){
     return{
         type: TOTAL
+    }
+}
+
+export function success(){
+    return{
+        type: SUCCESS
     }
 }

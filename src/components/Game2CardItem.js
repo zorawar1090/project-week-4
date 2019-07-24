@@ -37,7 +37,7 @@ export default class Game2CardItem extends Component{
                 this.setState({ feedback: false });
                 this.getData();
                 this.props.incrementCorrect();
-            }, 2000);
+            }, 1000);
         }
         else{
             this.setState({ feedback: true })

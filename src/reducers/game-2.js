@@ -1,8 +1,9 @@
 import {INCREMENT_CORRECT} from '../actions/game-2'
 import {INCREMENT_INCORRECT} from '../actions/game-2'
 import {TOTAL} from '../actions/game-2'
+import {SUCCESS} from '../actions/game-2'
 
-export default (state = {correctAnswers:0,incorrectAnswers:0, totalAnswers:0}, action = {}) => {
+export default (state = {correctAnswers:0,incorrectAnswers:0, totalAnswers:0, success:0}, action = {}) => {
     switch(action.type){
     case INCREMENT_CORRECT:
         return {
@@ -20,6 +21,12 @@ export default (state = {correctAnswers:0,incorrectAnswers:0, totalAnswers:0}, a
         return{
             ...state,
             totalAnswers: state.totalAnswers
+        }
+
+    case SUCCESS:
+        return{
+            ...state,
+            success: state.correctAnswers / state.totalAnswers
         }
     default: return state
     }

@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import {incrementCorrect, incrementIncorrect,} from '../actions/game-2'
 
  class Game2Container extends Component{
+
  render(){
      console.log('CORRECT:',this.props.correctAnswers )
      console.log('TOTAL:',this.props.totalAnswers )
@@ -14,15 +15,19 @@ import {incrementCorrect, incrementIncorrect,} from '../actions/game-2'
      incrementCorrect={this.props.incrementCorrect}
      incrementIncorrect={this.props.incrementIncorrect}
      totalAnswers={this.props.totalAnswers}
+     success={this.props.success}
+     
      />
      <p>Correct: {this.props.correctAnswers} / {this.props.totalAnswers}</p>
+     <p>Success Rate: {this.props.success}%</p>
      </div>
  }
 }
 const mapStateToProps = state => ({
     correctAnswers: state.game2.correctAnswers,
     incorrectAnswers: state.game2.incorrectAnswers,
-    totalAnswers: state.game2.totalAnswers
+    totalAnswers: state.game2.totalAnswers,
+    success: state.game2.success
   });
   
   const mapDispatchToProps = dispatch => bindActionCreators({ incrementCorrect, incrementIncorrect }, dispatch);

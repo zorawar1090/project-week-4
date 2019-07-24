@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import DogListContainer from './DogsListContainer'
 import { Link } from 'react-router-dom'
+import { Button } from 'react-bootstrap';
 
 class HomeContainer extends Component {
   render() {
@@ -8,13 +9,13 @@ class HomeContainer extends Component {
       <div>
         <DogListContainer />
         <Link to={`/game/1`}>
-          <button>Play Game 1</button>
+          <Button variant="outline-secondary" className="play-button">Play Game 1</Button>
         </Link>
         <Link to={`/game/2`}>
-          <button>Play Game 2</button>
+          <Button variant="outline-secondary" className="play-button">Play Game 2</Button>
         </Link>
         <Link to={`/game/3`}>
-          <button>Play Game 3</button>
+          <Button variant="outline-secondary" className="play-button">Play Game 3</Button>
         </Link>
       </div>
     )

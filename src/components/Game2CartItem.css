@@ -1,0 +1,10 @@
+img {
+  display: inline-block;
+  height: 200px;
+  width: 200px;
+  padding: 0 20px;
+}
+
+.correct{
+  border: 5px solid green
+}

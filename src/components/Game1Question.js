@@ -100,7 +100,6 @@ class Question extends Component {
     if (this.state.hasAnswer === false) {
       formValidation = <h6 className="error">Please select an answer.</h6>
     }
-    console.log(this.props.SuccesRate)
     return (
       
       <div>
@@ -110,7 +109,6 @@ class Question extends Component {
         <Button className="btn-secondary" type="submit">Submit </Button>
         </form>
         { formValidation }
-        { this.props.SuccesRate }
       </div>
     )
   } 

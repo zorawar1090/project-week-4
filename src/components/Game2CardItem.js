@@ -36,8 +36,9 @@ export default class Game2CardItem extends Component{
             setTimeout(() => {
                 this.setState({ feedback: false });
                 this.getData();
-                this.props.incrementCorrect();
-                this.props.updateSuccess();
+                // this.props.incrementCorrect();
+                // this.props.updateSuccess();
+                this.props.updateCorrectThunk();
             }, 1000);
         }
         else{
@@ -45,8 +46,9 @@ export default class Game2CardItem extends Component{
             setTimeout(() => {
                 this.setState({ feedback: false });
                 this.getData();
-                this.props.incrementIncorrect();
-                this.props.updateSuccess();
+                // this.props.incrementIncorrect();
+                // this.props.updateSuccess();
+                this.props.updateIncorrectThunk()
             }, 2000);
         }
     }

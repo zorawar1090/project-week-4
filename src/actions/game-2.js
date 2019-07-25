@@ -1,3 +1,5 @@
+import { request } from "https";
+
 export const INCREMENT_CORRECT = 'INCREMENT_CORRECT'
 export const INCREMENT_INCORRECT = 'INCREMENT_INCORRECT'
 export const TOTAL ='TOTAL'
@@ -20,3 +22,18 @@ export function updateSuccess(){
         type: SUCCESS
     }
 }
+
+export function updateIncorrectThunk(){
+    return function(dispatch, getState){
+        dispatch(incrementIncorrect())
+        dispatch(updateSuccess())
+    }
+}
+
+export function updateCorrectThunk(){
+    return function(dispatch, getState){
+        dispatch(incrementCorrect())
+        dispatch(updateSuccess())
+    }
+}
+

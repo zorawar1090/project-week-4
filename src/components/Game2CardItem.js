@@ -1,6 +1,6 @@
 import React,{Component}  from 'react'
 import request from 'superagent'
-import '../style/Game2CardItem.css'
+import '../styles/Game2CardItem.css'
 
 
 export default class Game2CardItem extends Component{

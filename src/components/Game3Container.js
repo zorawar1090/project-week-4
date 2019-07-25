@@ -25,7 +25,7 @@ export default class Game3Container extends Component {
   }
 
   render() {
-    const game1 = <Game1Container userHasAnswered={this.refreshGame} />
+    const game1 = <Game1Container fromGame3={true} userHasAnswered={this.refreshGame} />
     const game2 = <Game2CardItem userHasAnswered={this.refreshGame} />
     const games = [game1, game2]
     

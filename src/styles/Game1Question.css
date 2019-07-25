@@ -1,0 +1,21 @@
+.spinner {
+  margin: auto;
+}
+
+.error {
+  color: red;
+}
+
+.btn-secondary {
+  margin-bottom: 10px;
+  background-color: #d2a887 !important;
+  color: white !important;
+  border-color: #e0a97e !important;
+}
+
+.play-button:hover  {
+  /* color: ; */
+  background-color: #d2a887 !important;
+  color: white !important;
+  border-color: #e0a97e !important;
+}

@@ -6,6 +6,7 @@
   background-color: bisque;
   font-family: 'Abel', sans-serif;
   text-transform: capitalize;
+  height: 100%;
   font-size: 1.3em;
   border: 20px solid #a0603c75;
 }
@@ -19,33 +20,23 @@
   column-gap: 20px;
   list-style-type: none;
 }
-.dog-list:link {
-  text-decoration: none;
-  color: white;
-}
 .dog-breed-images img {
   max-width: 250px;
   padding: 10px;
 }
 
-.spinner {
-  margin: auto;
+a {
+  color: #3b3a3a !important;
 }
 
-.error {
-  color: red;
+a:hover {
+  color: #835f44 !important;
+  text-decoration: none !important;
+  font-weight: bold !important;
 }
 
-.btn-secondary {
-  margin-bottom: 10px;
-  background-color: #d2a887 !important;
-  color: white !important;
-  border-color: #e0a97e !important;
-}
-
-.play-button:hover  {
-  /* color: ; */
-  background-color: #d2a887 !important;
-  color: white !important;
-  border-color: #e0a97e !important;
+.btn-outline-secondary {
+  color: #574131 !important;
+  border-color: #644934 !important;
+  margin: 10px;
 }

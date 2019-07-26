@@ -1,43 +1,64 @@
 import React,{Component}  from 'react'
 import request from 'superagent'
 import '../styles/Game2CardItem.css'
+import { Promise } from 'q';
 
 
 export default class Game2CardItem extends Component{
-    state = {image: [], breed: null, correctIndex: 0, feedback: false}
+    state = {
+        image: [],
+        breed: null,
+        correctIndex: 0,
+        feedback: false,
+        usedBreeds:[]
+    }
     
     componentDidMount(){
-        this.getData();
+        this.promise();
     }
 
-    getData() {
-        request
-            .get(`https://dog.ceo/api/breeds/image/random/3`)
+    promise=()=>{
+    const firstPromise= new Promise(
+            request
+            .get('https://dog.ceo/api/breeds/list/all')
             .then(response => {
-                const correctIndex = (Math.floor(Math.random()*3));
-                //console.log('my current index is:', correctIndex)
+                this.props.setDogs(Object.keys(response.body.message))})
+            .catch(console.error)
+    )
+    const breed = Math.floor(Math.random()*(this.state.usedBreeds.length -1))
+    const secondPromise = new Promise(
+        request
+            .get(`https://dog.ceo/api/breed/${this.state.usedBreeds[breed]}/images/random/3`)
+            .then(response => {
+                const correctIndex = (Math.floor(Math.random()*(this.state.usedBreeds.length-1)));
                 this.setState({
                     image: response.body.message,
                     breed: response.body.message[correctIndex].split('/')[4],
                     correctIndex: correctIndex
-                });
-                
-            })
-            .catch(console.error);
+                })})
+    
+    )
+    const thirdPromise = new Promise(
+        request
+        .get(`https://dog.ceo/api/breeds/image/random/2`)
+        .then(response => {
+                this.setState({
+            image: response.body.message,
+        })})
+    )
+    const promises = [firstPromise,secondPromise,thirdPromise]
+    Promise.all(promises)
+        .then(res=> res.body.message)
     }
+   
 
     handleClick=(event)=>{
         const index = event.target.getAttribute('data-index')
-        //console.log('my index is:',index)
-        //console.log('current:', this.state.correctIndex)
         if (parseInt(index) === this.state.correctIndex){
-            this.setState({ feedback: true })
-            //this.props.userHasAnswered(true)    
+            this.setState({ feedback: true }) 
             setTimeout(() => {
                 this.setState({ feedback: false });
                 this.getData();
-                // this.props.incrementCorrect();
-                // this.props.updateSuccess();
                 this.props.updateCorrectThunk();
             }, 1000);
         }
@@ -46,15 +67,12 @@ export default class Game2CardItem extends Component{
             setTimeout(() => {
                 this.setState({ feedback: false });
                 this.getData();
-                // this.props.incrementIncorrect();
-                // this.props.updateSuccess();
                 this.props.updateIncorrectThunk()
             }, 2000);
         }
     }
 
     render(){
-        //console.log('Breed:', this.state.breed)
         return <div>
             <h2>Choose the image of {this.state.breed}</h2>
             {this.state.image.map((image,index) => {

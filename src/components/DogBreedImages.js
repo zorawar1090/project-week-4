@@ -9,7 +9,7 @@ export default function DogBreedImages(props) {
                 This page will show images of the {props.breed} breed.
                 <Link to="/">Go back to the index</Link>
                 <div>
-                    {images && images.map(url => <img key={url} src={url} alt="Dog" />)}
+                    {images && images.slice(0,10).map(url => <img key={url} src={url} alt="Dog" />)}
                     {!images && 'Loading...'}
                 </div>
             </div>

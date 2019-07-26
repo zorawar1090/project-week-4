@@ -21,9 +21,12 @@ import {incrementCorrect, incrementIncorrect, updateSuccess, updateIncorrectThun
      updateCorrectThunk={this.props.updateCorrectThunk}
      />
 
+    { !this.props.fromGame3 && <div>
      <p>Correct: {this.props.correctAnswers} / {this.props.totalAnswers}</p>
      <p>Success Rate: {Math.floor(this.props.success)}%</p>
      </div>
+    }
+    </div>
  }
 }
 const mapStateToProps = state => ({

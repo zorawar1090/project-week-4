@@ -1,47 +1,50 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 //import Game1QuestionImageComponent from './Game1QuestionImageComponent'
 import Question from './Game1Question'
 import request from 'superagent'
 import Spinner from 'react-spinner-material';
-import {connect} from 'react-redux'
-import {incrementCorrectAnswer, getRandomDog, updateImageUrl} from '../actions/game-1'
+import { connect } from 'react-redux'
+import { incrementCorrectAnswers, updateSuccessRate, incrementTotalAnswers, getRandomDog, updateImageUrl, updateAnswer, updateLoading, updateIsCorrect } from '../actions/game-1'
 
 class Game1Container extends React.Component {
-  
-  componentDidMount() {
+
+  componentDidMount = () => {
     this.getRandomDog()
   }
 
   getRandomDog = () => {
-    this.setState({
-      isCorrect: true
-    })
     request
       .get(`https://dog.ceo/api/breeds/image/random`)
       .then(response => {
-       this.props.updateImageUrl (response.body.message)
+        this.props.updateImageUrl(response.body.message)
+        this.props.updateAnswer(response.body.message.split('/')[4])
+        this.props.updateLoading()
       })
       .catch(error => {
         console.error(error)
       })
-  } 
+  }
 
   onSubmitQuestion = (result) => {
+    this.props.incrementTotalAnswers()
 
     if (this.props.fromGame3) {
       this.props.userHasAnswered(true)
     }
-    this.setState({
-      isCorrect: result
-    })
+
+    this.props.updateIsCorrect(result)
+
     if (result === false) {
       setTimeout(() => {
         this.getRandomDog()
+        this.props.updateIsCorrect(true)
       }, 2000);
     } else {
       this.getRandomDog()
+      this.props.incrementCorrectAnswers()
     }
+    this.props.updateSuccessRate()
   }
 
   render() {
@@ -49,24 +52,33 @@ class Game1Container extends React.Component {
     return (
       <div>
         <Link to={`/`}>Show me what you got!</Link>
-        <img src={this.props.imageUrl} alt=''/>
-        <Question answer={this.props.answer} handleSubmit={this.onSubmitQuestion}/>
-        <h6 className="error">{ this.props.isCorrect ? '' : `Wrong! The correct answer is ${this.props.answer}`}</h6>
+        <img src={this.props.imageUrl} alt='' />
+        <Question answer={this.props.answer} handleSubmit={this.onSubmitQuestion} />
+        <h6 className="error">{this.props.isCorrect ? '' : `Wrong! The correct answer is ${this.props.answer}`}</h6>
+        <p>Success Rate: {this.props.successRate}%</p>
       </div>
     )
   }
 }
-const mapStateToProps = state =>({
+
+const mapStateToProps = state => ({
   imageUrl: state.gameOne.imageUrl,
-  answer: state.answer,
-  loading: state.loading,
-  correctAnswer: state.correctAnswer,
-  totalAnswer: state.totalAnswer
+  answer: state.gameOne.answer,
+  loading: state.gameOne.loading,
+  correctAnswers: state.gameOne.correctAnswers,
+  totalAnswers: state.gameOne.totalAnswers,
+  isCorrect: state.gameOne.isCorrect,
+  successRate: state.gameOne.successRate
 })
 
-const mapDispatchToProps ={
-  incrementCorrectAnswer,
+const mapDispatchToProps = {
+  incrementCorrectAnswers,
+  incrementTotalAnswers,
   getRandomDog,
-  updateImageUrl
+  updateImageUrl,
+  updateAnswer,
+  updateLoading,
+  updateIsCorrect,
+  updateSuccessRate
 }
-export default connect(mapStateToProps,mapDispatchToProps)(Game1Container)
+export default connect(mapStateToProps, mapDispatchToProps)(Game1Container)

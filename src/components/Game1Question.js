@@ -82,6 +82,12 @@ class Question extends Component {
       userAnswer: event.target.value,
     })
   }
+
+  handleKeyPress = (event) => {
+    if(event.key === 'Enter'){
+      console.log('enter press here! ')
+    }
+  }
   
   render() {
     const radioButtons = this.state.selection.map(option => <div 
@@ -106,7 +112,7 @@ class Question extends Component {
         <h2>What is the breed of this dog?</h2>
         <form ref="form" onSubmit={this.handleSubmitForm}>
         {radioButtons}
-        <Button className="btn-secondary" type="submit">Submit </Button>
+        <Button className="btn-secondary" onKeyPress={this.handleKeyPress} type="submit">Submit </Button>
         </form>
         { formValidation }
       </div>

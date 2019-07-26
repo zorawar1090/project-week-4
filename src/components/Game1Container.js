@@ -51,7 +51,7 @@ class Game1Container extends React.Component {
     if (this.props.loading) return <Spinner size={120} spinnerColor={"#333"} spinnerWidth={2} visible={true} />
     return (
       <div>
-        <Link to={`/`}>Show me what you got!</Link>
+        <Link to={`/`} className="title-game-1">Show me what you got!</Link>
         <img src={this.props.imageUrl} alt='' />
         <Question answer={this.props.answer} handleSubmit={this.onSubmitQuestion} />
         <h6 className="error">{this.props.isCorrect ? '' : `Wrong! The correct answer is ${this.props.answer}`}</h6>

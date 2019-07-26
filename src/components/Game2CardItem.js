@@ -14,38 +14,39 @@ export default class Game2CardItem extends Component{
     }
     
     componentDidMount(){
-        this.promise();
+        this.Promise();
     }
 
-    promise=()=>{
-    const firstPromise= new Promise(
+    Promise(resolver, rejector){
+        const firstPromise= new Promise(
             request
             .get('https://dog.ceo/api/breeds/list/all')
-            .then(response => {
-                this.props.setDogs(Object.keys(response.body.message))})
-            .catch(console.error)
     )
     const breed = Math.floor(Math.random()*(this.state.usedBreeds.length -1))
     const secondPromise = new Promise(
         request
             .get(`https://dog.ceo/api/breed/${this.state.usedBreeds[breed]}/images/random/3`)
-            .then(response => {
-                const correctIndex = (Math.floor(Math.random()*(this.state.usedBreeds.length-1)));
-                this.setState({
-                    image: response.body.message,
-                    breed: response.body.message[correctIndex].split('/')[4],
-                    correctIndex: correctIndex
-                })})
     
     )
     const thirdPromise = new Promise(
         request
         .get(`https://dog.ceo/api/breeds/image/random/2`)
-        .then(response => {
+    )
+        request
+        .then(
+            firstPromise = response => {
+            this.props.setDogs(Object.keys(response.body.message))},
+            secondPromise = response => {
+                const correctIndex = (Math.floor(Math.random()*(this.state.usedBreeds.length-1)));
+                this.setState({
+                    image: response.body.message,
+                    breed: response.body.message[correctIndex].split('/')[4],
+                    correctIndex: correctIndex
+                })},
+            thirdPromise = response => {
                 this.setState({
             image: response.body.message,
         })})
-    )
     const promises = [firstPromise,secondPromise,thirdPromise]
     Promise.all(promises)
         .then(res=> res.body.message)

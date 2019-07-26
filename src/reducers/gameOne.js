@@ -1,4 +1,4 @@
-import { GET_RANDOM_DOG, UPDATE_SUCCESS_RATE, UPDATE_IMAGE_URL, UPDATE_ANSWER, UPDATE_LOADING, UPDATE_IS_CORRECT, INCREMENT_CORRECT_ANSWERS, INCREMENT_TOTAL_ANSWERS } from '../actions/game-1'
+import { GET_RANDOM_DOG, SET_INITIAL_STATE, UPDATE_SUCCESS_RATE, UPDATE_IMAGE_URL, UPDATE_ANSWER, UPDATE_LOADING, UPDATE_IS_CORRECT, INCREMENT_CORRECT_ANSWERS, INCREMENT_TOTAL_ANSWERS } from '../actions/game-1'
 
 
 const initialState = {
@@ -57,6 +57,8 @@ export default (state = initialState, action = {}) => {
         ...state,
         successRate: (state.correctAnswers/state.totalAnswers) * 100
       }
+    case SET_INITIAL_STATE:
+      return initialState
     default:
       return state
   }

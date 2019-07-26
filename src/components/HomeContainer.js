@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import DogListContainer from './DogsListContainer'
 import { Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap';
+import {connect} from 'react-redux'
 
 class HomeContainer extends Component {
   render() {
@@ -22,4 +23,6 @@ class HomeContainer extends Component {
   }
 }
 
-export default HomeContainer
+const mapDispatchToProps = {}
+
+export default connect(null, mapDispatchToProps)(HomeContainer)

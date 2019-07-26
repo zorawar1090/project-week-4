@@ -6,6 +6,11 @@ export const UPDATE_LOADING = 'UPDATE_LOADING'
 export const UPDATE_IS_CORRECT = 'UPDATE_IS_CORRECT'
 export const INCREMENT_TOTAL_ANSWERS = 'INCREMENT_TOTAL_ANSWERS'
 export const UPDATE_SUCCESS_RATE = 'UPDATE_SUCCESS_RATE'
+export const SET_INITIAL_STATE = 'SET_INITIAL_STATE'
+
+export function setInitialState(){
+    return {type: SET_INITIAL_STATE}
+}
 
 export function updateSuccessRate() {
     return {

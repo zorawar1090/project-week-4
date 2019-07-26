@@ -4,6 +4,11 @@ export const INCREMENT_CORRECT = 'INCREMENT_CORRECT'
 export const INCREMENT_INCORRECT = 'INCREMENT_INCORRECT'
 export const TOTAL ='TOTAL'
 export const SUCCESS ='SUCCESS'
+export const SET_INITIAL_STATE = 'SET_INITIAL_STATE'
+
+export function setInitialState(){
+    return {type: SET_INITIAL_STATE}
+}
 
 export function incrementCorrect() {
   return {

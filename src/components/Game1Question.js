@@ -119,7 +119,6 @@ class Question extends Component {
       formValidation = <h6 className="error">Please select an answer.</h6>
     }
     return (
-<<<<<<< HEAD
       <Hotkeys keyname='Enter' onKeyDown={this.handleKeyPress}>
         <div>
           <h2>What is the breed of this dog?</h2>
@@ -130,17 +129,6 @@ class Question extends Component {
           {formValidation}
         </div>
       </Hotkeys>
-=======
-      
-      <div>
-        <h2>What is the breed of this dog?</h2>
-        <form ref="form" onSubmit={this.handleSubmitForm}>
-        {radioButtons}
-        <Button className="btn-secondary" onKeyPress={this.handleKeyPress} type="submit">Submit </Button>
-        </form>
-        { formValidation }
-      </div>
->>>>>>> c5c2d12a28f0e53fcbd99d795ba2e482fbc6303e
     )
   }
 }

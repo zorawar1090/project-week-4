@@ -1,28 +1,34 @@
-import {GET_RANDOM_DOG, UPDATE_IMAGE_URL, UPDATE_ANSWER, UPDATE_LOADING} from '../actions/game-1'
+import { GET_RANDOM_DOG, UPDATE_SUCCESS_RATE, UPDATE_IMAGE_URL, UPDATE_ANSWER, UPDATE_LOADING, UPDATE_IS_CORRECT, INCREMENT_CORRECT_ANSWERS, INCREMENT_TOTAL_ANSWERS } from '../actions/game-1'
 
 
 const initialState = {
   imageUrl: null,
   answer: null,
   loading: true,
-  correctAnswer: 0,
-  totalAnswer: 0,
-  isCorrect: false
+  correctAnswers: 0,
+  totalAnswers: 0,
+  isCorrect: true,
+  successRate: 0
 }
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case 'SET_GAME1_RESULTS':
-      return [...state, action.payload]
-    case 'INCREMENT_CORRECT_ANSWER':
+    // case 'SET_GAME1_RESULTS':
+    //   return [...state, action.payload]
+    case INCREMENT_TOTAL_ANSWERS:
       return {
         ...state,
-        correctAnswer: state.correctAnswer++
-            }
+        totalAnswers: state.totalAnswers + 1
+      }
+    case INCREMENT_CORRECT_ANSWERS:
+      return {
+        ...state,
+        correctAnswers: state.correctAnswers + 1
+      }
     case GET_RANDOM_DOG:
       return {
-          ...state,
-          imageUrl: action.payload.message
+        ...state,
+        imageUrl: action.payload.message
       }
     case UPDATE_IMAGE_URL:
       return {
@@ -40,6 +46,16 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         loading: action.payload
+      }
+    case UPDATE_IS_CORRECT:
+      return {
+        ...state,
+        isCorrect: action.payload
+      }
+    case UPDATE_SUCCESS_RATE:
+      return {
+        ...state,
+        successRate: (state.correctAnswers/state.totalAnswers) * 100
       }
     default:
       return state

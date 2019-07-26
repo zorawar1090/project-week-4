@@ -55,7 +55,11 @@ class Game1Container extends React.Component {
         <img src={this.props.imageUrl} alt='' />
         <Question answer={this.props.answer} handleSubmit={this.onSubmitQuestion} />
         <h6 className="error">{this.props.isCorrect ? '' : `Wrong! The correct answer is ${this.props.answer}`}</h6>
-        <p>Success Rate: {Math.floor(this.props.successRate)}%</p>
+        {!this.props.fromGame3 && 
+        <div>
+          <p>Success Rate: {Math.floor(this.props.successRate)}%</p>
+        </div>
+        }
       </div>
     )
   }

@@ -90,8 +90,9 @@ class Question extends Component {
     }
   }
   
-  onKeyDown(keyName, e, handle) {
-    console.log("test:onKeyDown", keyName, e, handle)
+  onKeyDown = (keyName, e, handle) => {
+    console.log("Enter is pressed")
+    this.handleSubmitForm(e)
   }
   // handleKeyPress = (event) => {
   //   console.log(event.key)
@@ -119,7 +120,8 @@ class Question extends Component {
       formValidation = <h6 className="error">Please select an answer.</h6>
     }
     return (
-      <Hotkeys keyname='Enter' onKeyDown={this.handleKeyPress}>
+      <Hotkeys keyName="enter" 
+        onKeyDown={this.onKeyDown}>
         <div>
           <h2>What is the breed of this dog?</h2>
           <form ref="form" onSubmit={this.handleSubmitForm}>

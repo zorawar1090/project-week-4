@@ -9,7 +9,7 @@ class HomeContainer extends Component {
       <div>
         <DogListContainer />
         <Link to={`/game/1`}>
-          <Button variant="outline-secondary" className="play-button">Play Game 1</Button>
+          <Button variant="outline-secondary" onClick={this.handleGame1Click} className="play-button">Play Game 1</Button>
         </Link>
         <Link to={`/game/2`}>
           <Button variant="outline-secondary" className="play-button">Play Game 2</Button>
